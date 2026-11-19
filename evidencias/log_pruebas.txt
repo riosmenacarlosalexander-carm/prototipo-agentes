@@ -1,0 +1,77 @@
+# Historial completo extraído de los casos de prueba
+
+[AGENTE - CICLO]: Se alcanzó el límite máximo de pasos y reintentos permitidos sin resolución.
+[INICIO] Arrancando cliente MCP...
+======================================================================
+ DEMOSTRACIÓN DE REQUISITOS OBLIGATORIOS DEL AGENTE
+======================================================================
+
+--- DEMOSTRACIÓN 1: CASO COMPLETO Y CONFLICTO DE HORARIO (CAMBIO DE RUTA) ---
+
+[USUARIO]: Necesito usar el Microscopio de Barrido
+
+[CICLO] Ejecutando Paso/Intento 1 de 3...
+[AGENTE - RAG]: Evidencia recuperada con éxito.
+  -> Cita Textual: "El uso del Microscopio de Barrido requiere certificación en la inducción técnica y uso obligatorio de gafas de seguridad."
+  -> Fuente Oficial: [Reglamento General de Laboratorios, Sección 4.2 (Pág. 3)]
+[AGENTE - MCP]: Descubriendo e invocando herramientas en el servidor...
+  -> [REGISTRO] Ficha Técnica: Microscopio Electrónico de Barrido (SEM-3000) (Sala Blanca B - Mesón 2)
+  -> [REGISTRO] Invocando 'consultar_horarios' con argumentos: {'equipo': 'microscopio_barrido', 'fecha': '2026-11-20'}
+  -> [REGISTRO] Resultado MCP Recibido: {'equipo': 'microscopio_barrido', 'fecha': '2026-11-20', 'disponibles': ['09:00', '11:00', '12:00'], 'ocupados': ['10:00', '14:00']}
+  -> [REGISTRO] Permisos de Acceso: Concedidos (Modo Lectura de Estados)
+[AGENTE - CICLO]: Conflicto detectado. El bloque 10:00 está ocupado.
+[AGENTE]: Propone alternativa: Bloque 09:00 debido a cruce de agenda.
+
+[AGENTE]: De acuerdo con la fuente [Reglamento General de Laboratorios, Sección 4.2 (Pág. 3)], recuerde cumplir con la regla: 'El uso del Microscopio de Barrido requiere certificación en la inducción técnica y uso obligatorio de gafas de seguridad.'.
+[AGENTE]: ¿Confirma la reserva definitiva del equipo 'microscopio_barrido' para el bloque 09:00?
+[SISTEMA - CONTROL] ¿Aprobar confirmación de operación en entorno de prueba? (S/N): 
+[INTERFAZ] Entrada detectada: 'S'
+
+======================================================================
+ OPERACIÓN CONFIRMADA CON ÉXITO (COMPROBANTE GENERADO) 
+ RESERVA ID:   RES-MICR-0900
+ EQUIPO:       MICROSCOPIO_BARRIDO
+ FECHA Y HORA: 2026-11-20 | Bloque 09:00
+ SUSTENTO RAG: Reglamento General de Laboratorios, Sección 4.2 (Pág. 3)
+======================================================================
+
+--- DEMOSTRACIÓN 2: CORRECCIÓN DE DATOS EN MEMORIA ---
+[SISTEMA - MEMORIA] Corrigiendo equipo_id: 'microscopio_barrido' -> 'secuenciador_adn'
+
+[USUARIO]: Ahora confirma el turno modificado en mi sesión
+
+[CICLO] Ejecutando Paso/Intento 1 de 3...
+[AGENTE - RAG]: Evidencia recuperada con éxito.
+  -> Cita Textual: "Para el Secuenciador de ADN se exige la aprobación del módulo de Bioseguridad Nivel II sin excepciones."
+  -> Fuente Oficial: [Normativa de Equipos Complejos, Art. 8 (Pág. 1)]
+[AGENTE - MCP]: Descubriendo e invocando herramientas en el servidor...
+  -> [REGISTRO] Ficha Técnica: Secuenciador Genético de Alto Rendimiento (SeqPro X) (Laboratorio de Biología Molecular - Cabina 1)
+  -> [REGISTRO] Invocando 'consultar_horarios' con argumentos: {'equipo': 'secuenciador_adn', 'fecha': '2026-11-20'}
+  -> [REGISTRO] Resultado MCP Recibido: {'equipo': 'secuenciador_adn', 'fecha': '2026-11-20', 'disponibles': ['10:00', '11:00', '12:00'], 'ocupados': ['09:00']}
+  -> [REGISTRO] Permisos de Acceso: Concedidos (Modo Lectura de Estados)
+
+[AGENTE]: De acuerdo con la fuente [Normativa de Equipos Complejos, Art. 8 (Pág. 1)], recuerde cumplir con la regla: 'Para el Secuenciador de ADN se exige la aprobación del módulo de Bioseguridad Nivel II sin excepciones.'.
+[AGENTE]: ¿Confirma la reserva definitiva del equipo 'secuenciador_adn' para el bloque 10:00?
+[SISTEMA - CONTROL] ¿Aprobar confirmación de operación en entorno de prueba? (S/N): 
+[INTERFAZ] Entrada detectada: 'S'
+
+======================================================================
+ OPERACIÓN CONFIRMADA CON ÉXITO (COMPROBANTE GENERADO) 
+ RESERVA ID:   RES-SECU-1000
+ EQUIPO:       SECUENCIADOR_ADN
+ FECHA Y HORA: 2026-11-20 | Bloque 10:00
+ SUSTENTO RAG: Normativa de Equipos Complejos, Art. 8 (Pág. 1)
+======================================================================
+
+--- DEMOSTRACIÓN 3: CONSULTA SIN RESPALDO DOCUMENTAL (RAG) ---
+
+[USUARIO]: Quiero reservar un Telescopio Espacial
+
+[CICLO] Ejecutando Paso/Intento 1 de 3...
+[AGENTE - RAG]: EVIDENCIA INSUFICIENTE. No se encontraron normativas o especificaciones para procesar el equipo solicitado.
+[AGENTE - CICLO]: Flujo terminado por falta de sustento documental.
+
+--- DEMOSTRACIÓN 4: APERTURA DE NUEVA SESIÓN ---
+
+[SISTEMA - MEMORIA] Se ha abierto una sesión nueva. Datos reiniciados
+[VERIFICACIÓN] Memoria actual del agente: {'equipo_id': None, 'fecha': None, 'bloque_horario': None}

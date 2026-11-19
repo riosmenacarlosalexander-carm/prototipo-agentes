@@ -1,0 +1,3 @@
+# Dependencias del proyecto
+
+mcp>=1.0.0
